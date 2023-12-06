@@ -181,7 +181,6 @@ const SignUp = styled("div")({
 });
 
 function HomePage() {
-  console.log("Hello!");
 
   return (
     <HomePage1>
