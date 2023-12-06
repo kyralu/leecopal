@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import WebsitePicImage from "../assets/images/Website_Pic.png";
 import { styled } from "@mui/material/styles";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUpPage1 = styled("div")({
   backgroundColor: `rgba(104, 100, 100, 1)`,
@@ -241,80 +241,108 @@ const SignUp1 = styled("div")({
 });
 
 function SignUpPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  };
+
+  const isEmail = (email) =>
+    /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Email:", email, "Password:", password, "Confirm Password:", confirmPassword);
-    
+
+    if (!isEmail(email)) {
+      resetForm();
+      alert("Please enter valid email!");
+      return;
+    }
+
     if (password !== confirmPassword) {
+      resetForm();
       alert("Passwords do not match.");
       return;
     }
 
     const userData = {
       email,
-      password
+      password,
     };
 
     try {
-      const response = await fetch('/signup', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to Sign Up');
+      if (response.status == 409) {
+        const result = await response.json();
+        console.log("Signed Up Failed:", result.message);
+        resetForm();
+        alert("User Already Exists");
+      } else if (!response.ok) {
+        throw new Error("Failed to Sign Up");
+      } else {
+        const result = await response.json();
+        console.log("Sign up Successful:", result);
+        alert("User Successfully Created");
+        navigate("/login");
       }
-
-      const result = await response.json();
-      console.log('Sign up Successful:', result);
     } catch (error) {
-      console.log('Sign up Failed', error);
+      console.log("Sign up Failed", error);
     }
   };
   return (
     <SignUpPage1>
       <WebsitePic src={WebsitePicImage} loading="lazy" alt={"Website Pic"} />
       <Frame1>
-      <form onSubmit={handleSubmit}>
-        <EmailInput 
-          type="text" 
-          placeholder="Email" 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)} 
-        />
-        <Email>{`Email:`}</Email>
-        <PasswordInput 
-          type="password" 
-          placeholder="Password" 
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} 
-        />
-        <Password>{`Password:`}</Password>
-        <ConfirmPasswordInput 
-          type="password" 
-          placeholder="Confirm Password" 
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)} 
-        />
-        <ConfirmPassword>{`Confirm Password:`}</ConfirmPassword>
-        <SignUpButton type="submit">
-          Sign Up
-        </SignUpButton>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <EmailInput
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Email>{`Email:`}</Email>
+          <PasswordInput
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Password>{`Password:`}</Password>
+          <ConfirmPasswordInput
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <ConfirmPassword>{`Confirm Password:`}</ConfirmPassword>
+          <SignUpButton type="submit">Sign Up</SignUpButton>
+        </form>
       </Frame1>
       <NavBar>
         <LeetcodeStudyGroup>{`LeecoPal`}</LeetcodeStudyGroup>
-        <Link to="/home"><Home>{`Home`}</Home></Link>
-        <Link to="/group"><Group>{`Group`}</Group></Link>
-        <Link to="/login"><LogIn>{`Log In`}</LogIn></Link>
-        <Link to="/signup"><SignUp1>{`Sign Up`}</SignUp1></Link>
+        <Link to="/home">
+          <Home>{`Home`}</Home>
+        </Link>
+        <Link to="/group">
+          <Group>{`Group`}</Group>
+        </Link>
+        <Link to="/login">
+          <LogIn>{`Log In`}</LogIn>
+        </Link>
+        <Link to="/signup">
+          <SignUp1>{`Sign Up`}</SignUp1>
+        </Link>
       </NavBar>
     </SignUpPage1>
   );

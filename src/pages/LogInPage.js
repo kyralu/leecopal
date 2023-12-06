@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import WebsitePicImage from "../assets/images/Website_Pic.png";
 import { styled } from "@mui/material/styles";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 const LogInPage1 = styled("div")({
   backgroundColor: `rgba(104, 100, 100, 1)`,
@@ -215,45 +215,82 @@ const SignUp = styled("div")({
 });
 
 function LogInPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
+  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Email:", email, "Password:", password);
-    // Handle login logic here
+
+    const userData = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        alert("Email/Password Incorrect");
+        resetForm();
+        throw new Error("Login Failed");
+      }
+
+      const result = await response.json();
+      console.log("Login Successful", result);
+      alert("Login Successful");
+      navigate("/group");
+    } catch (e) {
+      console.error("Error Occurred", e);
+    }
   };
 
   return (
     <LogInPage1>
       <WebsitePic src={WebsitePicImage} loading="lazy" alt={"Website Pic"} />
       <Frame1>
-      <form onSubmit={handleSubmit}>
-        <EmailInput 
-          type="text" 
-          placeholder="Email" 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)} 
-        />
-        <Email>{`Email:`}</Email>
-        <PasswordInput 
-          type="password" 
-          placeholder="Password" 
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} 
-        />
-        <Password>{`Password:`}</Password>
-        <LogInButton type="submit">
-          Log In
-        </LogInButton>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <EmailInput
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Email>{`Email:`}</Email>
+          <PasswordInput
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Password>{`Password:`}</Password>
+          <LogInButton type="submit">Log In</LogInButton>
+        </form>
       </Frame1>
       <NavBar>
         <LeetcodeStudyGroup>{`LeecoPal`}</LeetcodeStudyGroup>
-        <Link to="/home"><Home>{`Home`}</Home></Link>
-        <Link to="/group"><Group>{`Group`}</Group></Link>
-        <Link to="/login"><LogIn1>{`Log In`}</LogIn1></Link>
-        <Link to="/signup"><SignUp>{`Sign Up`}</SignUp></Link>
+        <Link to="/home">
+          <Home>{`Home`}</Home>
+        </Link>
+        <Link to="/group">
+          <Group>{`Group`}</Group>
+        </Link>
+        <Link to="/login">
+          <LogIn1>{`Log In`}</LogIn1>
+        </Link>
+        <Link to="/signup">
+          <SignUp>{`Sign Up`}</SignUp>
+        </Link>
       </NavBar>
     </LogInPage1>
   );
