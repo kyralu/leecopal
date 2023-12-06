@@ -1,11 +1,7 @@
-import React from 'react';
-
-import WebsitePicImage from '../assets/images/Website_Pic.png';
-
-import SignUpImage from '../assets/images/Website_Pic.png';
-
-import { styled } from '@mui/material/styles';
-
+import React, { useState } from "react";
+import WebsitePicImage from "../assets/images/Website_Pic.png";
+import { styled } from "@mui/material/styles";
+import { Link } from 'react-router-dom';
 
 const SignUpPage1 = styled("div")({
   backgroundColor: `rgba(104, 100, 100, 1)`,
@@ -46,12 +42,12 @@ const Frame1 = styled("div")({
   overflow: `hidden`,
 });
 
-const SignUpButton = styled("div")({
-  backgroundColor: `rgba(110, 178, 86, 0.2)`,
-  boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
-  border: `1px solid rgba(49, 226, 98, 1)`,
-  boxSizing: `border-box`,
-  borderRadius: `20px`,
+const SignUpButton = styled("button")({
+  // backgroundColor: `rgba(110, 178, 86, 0.2)`,
+  // boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
+  // border: `1px solid rgba(49, 226, 98, 1)`,
+  // boxSizing: `border-box`,
+  // borderRadius: `20px`,
   display: `flex`,
   position: `absolute`,
   isolation: `isolate`,
@@ -65,14 +61,8 @@ const SignUpButton = styled("div")({
   width: `138px`,
 });
 
-const SignUp = styled("img")({
-  height: `43px`,
-  width: `118px`,
-  margin: `0px`,
-});
-
 const ConfirmPasswordInput = styled("input")({
-  width: `310px`,
+  width: `400px`,
   position: `absolute`,
   left: `86px`,
   top: `406px`,
@@ -98,7 +88,7 @@ const ConfirmPassword = styled("div")({
 });
 
 const PasswordInput = styled("input")({
-  width: `310px`,
+  width: `400px`,
   position: `absolute`,
   left: `86px`,
   top: `261px`,
@@ -123,14 +113,14 @@ const Password = styled("div")({
   top: `188px`,
 });
 
-const UserNameInput = styled("input")({
-  width: `310px`,
+const EmailInput = styled("input")({
+  width: `400px`,
   position: `absolute`,
   left: `85px`,
   top: `120px`,
 });
 
-const UserName = styled("div")({
+const Email = styled("div")({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
@@ -250,48 +240,84 @@ const SignUp1 = styled("div")({
   top: `0px`,
 });
 
-
 function SignUpPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("Email:", email, "Password:", password, "Confirm Password:", confirmPassword);
+    
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    const userData = {
+      email,
+      password
+    };
+
+    try {
+      const response = await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to Sign Up');
+      }
+
+      const result = await response.json();
+      console.log('Sign up Successful:', result);
+    } catch (error) {
+      console.log('Sign up Failed', error);
+    }
+  };
   return (
     <SignUpPage1>
-      <WebsitePic src={WebsitePicImage} loading='lazy' alt={"Website Pic"}/>
+      <WebsitePic src={WebsitePicImage} loading="lazy" alt={"Website Pic"} />
       <Frame1>
-      <UserNameInput type="text" placeholder="UserName" />
-        <UserName>
-          {`UserName:`}
-        </UserName>
-        <PasswordInput type="password" placeholder="Password" />
-        <Password>
-          {`Password:`}
-        </Password>
-        <ConfirmPasswordInput type="password" placeholder="ConfirmPassword" />
-        <ConfirmPassword>
-          {`Confirm Password:`}
-        </ConfirmPassword>
-        <SignUpButton>
-          <SignUp src={SignUpImage} loading='lazy' alt={"Sign Up"}/>
+      <form onSubmit={handleSubmit}>
+        <EmailInput 
+          type="text" 
+          placeholder="Email" 
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} 
+        />
+        <Email>{`Email:`}</Email>
+        <PasswordInput 
+          type="password" 
+          placeholder="Password" 
+          value={password}
+          onChange={(e) => setPassword(e.target.value)} 
+        />
+        <Password>{`Password:`}</Password>
+        <ConfirmPasswordInput 
+          type="password" 
+          placeholder="Confirm Password" 
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)} 
+        />
+        <ConfirmPassword>{`Confirm Password:`}</ConfirmPassword>
+        <SignUpButton type="submit">
+          Sign Up
         </SignUpButton>
+      </form>
       </Frame1>
       <NavBar>
-        <LeetcodeStudyGroup>
-          {`Leetcode Study Group`}
-        </LeetcodeStudyGroup>
-        <Home>
-          {`Home`}
-        </Home>
-        <Group>
-          {`Group`}
-        </Group>
-        <LogIn>
-          {`Log In`}
-        </LogIn>
-        <SignUp1>
-          {`Sign Up`}
-        </SignUp1>
+        <LeetcodeStudyGroup>{`LeecoPal`}</LeetcodeStudyGroup>
+        <Link to="/home"><Home>{`Home`}</Home></Link>
+        <Link to="/group"><Group>{`Group`}</Group></Link>
+        <Link to="/login"><LogIn>{`Log In`}</LogIn></Link>
+        <Link to="/signup"><SignUp1>{`Sign Up`}</SignUp1></Link>
       </NavBar>
-    </SignUpPage1>);
-
-  }
+    </SignUpPage1>
+  );
+}
 
 export default SignUpPage;
-

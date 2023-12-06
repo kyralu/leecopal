@@ -1,10 +1,7 @@
-import React from 'react';
-
-import WebsitePicImage from '../assets/images/Website_Pic.png';
-
-import LogInImage from '../assets/images/Website_Pic.png';
-
-import { styled } from '@mui/material/styles';
+import React, { useState } from "react";
+import WebsitePicImage from "../assets/images/Website_Pic.png";
+import { styled } from "@mui/material/styles";
+import { Link } from 'react-router-dom';
 
 const LogInPage1 = styled("div")({
   backgroundColor: `rgba(104, 100, 100, 1)`,
@@ -45,12 +42,12 @@ const Frame1 = styled("div")({
   overflow: `hidden`,
 });
 
-const LogInButton = styled("div")({
-  backgroundColor: `rgba(110, 178, 86, 0.2)`,
-  boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
-  border: `1px solid rgba(49, 226, 98, 1)`,
-  boxSizing: `border-box`,
-  borderRadius: `20px`,
+const LogInButton = styled("button")({
+  // backgroundColor: `rgba(110, 178, 86, 0.2)`,
+  // boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
+  // border: `1px solid rgba(49, 226, 98, 1)`,
+  // boxSizing: `border-box`,
+  // borderRadius: `20px`,
   display: `flex`,
   position: `absolute`,
   isolation: `isolate`,
@@ -64,14 +61,8 @@ const LogInButton = styled("div")({
   width: `116px`,
 });
 
-const LogIn = styled("img")({
-  height: `43px`,
-  width: `96px`,
-  margin: `0px`,
-});
-
 const PasswordInput = styled("input")({
-  width: `310px`,
+  width: `400px`,
   position: `absolute`,
   left: `85px`,
   top: `340px`,
@@ -96,14 +87,14 @@ const Password = styled("div")({
   top: `246px`,
 });
 
-const UserNameInput = styled("input")({
-  width: `310px`,
+const EmailInput = styled("input")({
+  width: `400px`,
   position: `absolute`,
   left: `85px`,
   top: `157px`,
 });
 
-const UserName = styled("div")({
+const Email = styled("div")({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
@@ -223,45 +214,49 @@ const SignUp = styled("div")({
   top: `0px`,
 });
 
-
 function LogInPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Email:", email, "Password:", password);
+    // Handle login logic here
+  };
+
   return (
     <LogInPage1>
-      <WebsitePic src={WebsitePicImage} loading='lazy' alt={"Website Pic"}/>
+      <WebsitePic src={WebsitePicImage} loading="lazy" alt={"Website Pic"} />
       <Frame1>
-        <UserNameInput type="text" placeholder="Username" />
-        <UserName>
-          {`UserName:`}
-        </UserName>
-        <PasswordInput type="password" placeholder="Password" />
-        <Password>
-          {`Password:`}
-        </Password>
-        <LogInButton>
-          <LogIn src={LogInImage} loading='lazy' alt={"Log In"}/>
+      <form onSubmit={handleSubmit}>
+        <EmailInput 
+          type="text" 
+          placeholder="Email" 
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} 
+        />
+        <Email>{`Email:`}</Email>
+        <PasswordInput 
+          type="password" 
+          placeholder="Password" 
+          value={password}
+          onChange={(e) => setPassword(e.target.value)} 
+        />
+        <Password>{`Password:`}</Password>
+        <LogInButton type="submit">
+          Log In
         </LogInButton>
+      </form>
       </Frame1>
       <NavBar>
-        <LeetcodeStudyGroup>
-          {`Leetcode Study Group`}
-        </LeetcodeStudyGroup>
-        <Home>
-          {`Home`}
-        </Home>
-        <Group>
-          {`Group`}
-        </Group>
-        <LogIn1>
-          {`Log In`}
-        </LogIn1>
-        <SignUp>
-          {`Sign Up`}
-        </SignUp>
+        <LeetcodeStudyGroup>{`LeecoPal`}</LeetcodeStudyGroup>
+        <Link to="/home"><Home>{`Home`}</Home></Link>
+        <Link to="/group"><Group>{`Group`}</Group></Link>
+        <Link to="/login"><LogIn1>{`Log In`}</LogIn1></Link>
+        <Link to="/signup"><SignUp>{`Sign Up`}</SignUp></Link>
       </NavBar>
-    </LogInPage1>);
-
-  }
+    </LogInPage1>
+  );
+}
 
 export default LogInPage;
-
-  
