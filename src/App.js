@@ -13,7 +13,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/group/question" element={<QuestionPage />} />
+        <Route path="/group/questions" element={<QuestionPage />} />
         {/* Other routes */}
       </Routes>
     </Router>

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const User = require('./models/User');
+const Question = require('./models/Question');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 const bcrypt = require('bcrypt');
@@ -82,8 +83,24 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ message: 'Error logging in', error: error.message });
         
     }
-
 })
+
+app.post('/group/questions', async (req, res) => {
+    const { title, content } = req.body;
+
+    try {
+        const newQuestion = new Question({
+            title,
+            content,
+            answers: []
+        });
+
+        await newQuestion.save();
+        res.status(201).json({ message: 'Question created successfully' });
+    } catch(e) {
+        res.status(500).json({ message: 'Error creating question', e});
+    }
+});
 
 // Start the server
 const port = process.env.PORT || 3000;

@@ -9,7 +9,7 @@ const SignUpPage1 = styled("div")({
   position: `relative`,
   isolation: `isolate`,
   flexDirection: `row`,
-  width: `1440px`,
+  width: `100vw`,
   height: `1024px`,
   justifyContent: `flex-start`,
   alignItems: `flex-start`,
@@ -144,11 +144,11 @@ const NavBar = styled("div")({
   position: `absolute`,
   isolation: `isolate`,
   flexDirection: `row`,
-  justifyContent: `flex-start`,
+  justifyContent: `space-around`,
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
-  width: `1065px`,
+  width: `100%`,
   height: `46px`,
   left: `188px`,
   top: `50px`,
@@ -283,7 +283,7 @@ function SignUpPage() {
         body: JSON.stringify(userData),
       });
 
-      if (response.status == 409) {
+      if (response.status === 409) {
         const result = await response.json();
         console.log("Signed Up Failed:", result.message);
         resetForm();
