@@ -102,6 +102,34 @@ app.post('/group/questions', async (req, res) => {
     }
 });
 
+app.get('/group/questions', async (req, res) => {
+    try {
+        const questions = await Question.find({});
+        res.json(questions);
+    } catch (e) {
+        res.status(500).json({ message: 'Error fetching questions', e});
+    }
+})
+
+app.post('/group/questions/:questionId/answer', async (req, res) => {
+    const { questionId } = req.params;
+    const { answerContent } = req.body;
+
+    try {
+        const question = await Question.findById(questionId);
+        if (!question) {
+            return res.status(404).json({ message: 'Question not found' });
+        }
+
+        question.answers.push({ content: answerContent });
+        await question.save();
+
+        res.status(201).json({ message: 'Answer added successfully' });
+    } catch (e) {
+        res.status(500).json({ message: 'Error saving answer' });
+    }
+});
+
 // Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server started on port ${port}`));
