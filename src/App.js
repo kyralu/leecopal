@@ -1,22 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import QuestionPage from './pages/group/question/QustionPage';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
 import LogInPage from './pages/LogInPage';
 import SignUpPage from './pages/SignUpPage';
-import HomePage from './pages/HomePage';
+import HomePage from './pages/HomePage/HomePage';
 import GroupPage from './pages/GroupPage';
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/login" element={<LogInPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/group" element={<GroupPage />} /> 
-        <Route path="/group/questions" element={<QuestionPage />} />
-        {/* Other routes */}
-      </Routes>
+      <div className="App">
+        <Navbar />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LogInPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/group" element={<GroupPage />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }
