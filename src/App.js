@@ -4,7 +4,7 @@ import QuestionPage from './pages/group/question/QustionPage';
 import LogInPage from './pages/LogInPage';
 import SignUpPage from './pages/SignUpPage';
 import HomePage from './pages/HomePage';
-// ... import other pages
+import GroupPage from './pages/GroupPage';
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/group" element={<GroupPage />} /> 
         <Route path="/group/questions" element={<QuestionPage />} />
         {/* Other routes */}
       </Routes>
@@ -21,3 +22,4 @@ function App() {
 }
 
 export default App;
+

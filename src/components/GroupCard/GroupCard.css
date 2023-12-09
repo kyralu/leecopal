@@ -1,0 +1,40 @@
+.group-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  border: 1px solid #ddd; /* Added border */
+}
+
+.team-icon {
+  font-size: 3rem; /* Adjust size as needed */
+}
+
+.group-name {
+  font-size: 1.2rem;
+  color: #333;
+  line-height: 1.2rem;
+  margin-left: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+}
+
+button:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* .group-card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+} */
