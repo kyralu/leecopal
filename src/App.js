@@ -1,10 +1,11 @@
 import React from 'react';
+import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import LogInPage from './pages/LogInPage';
 import SignUpPage from './pages/SignUpPage';
 import HomePage from './pages/HomePage/HomePage';
-import GroupPage from './pages/GroupPage';
+import GroupPage from './pages/GroupPage/GroupPage';
 
 function App() {
   return (

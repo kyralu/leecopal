@@ -1,0 +1,48 @@
+.filter {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.filter:hover {
+  background-color: #e6e6ff;
+  cursor: pointer;
+}
+
+.filter--active {
+  /* deep purpple background */
+  background-color: #854eac;
+  color: white;
+}
+
+.create-group-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 30px;
+}
+
+.create-group-button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #854eac;
+}
+
+.controller {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
