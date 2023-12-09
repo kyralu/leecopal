@@ -4,9 +4,14 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const User = require('./models/User');
 const Question = require('./models/Question');
+const cookieParser = require("cookie-parser");
+const sessions = require('express-session');
+
+
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 const saltRounds = 10;
 
 require('dotenv').config(); // For environment variables
@@ -21,25 +26,17 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
-// Define a simple route for testing
-app.get('/', (req, res) => res.send('Hello from Backend'));
+// express-session
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: "no-one-will-know-this",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false 
+}));
 
-app.post('/', async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        const existingUser = await User.findOne({email: email});
-
-        if (existingUser) {
-            res.json("exist");
-        }
-        else {
-            res.json("not exist");
-        }
-    }
-    catch(e) {
-        res.json("not exist");
-    }
-})
+// cookie-parser
+app.use(cookieParser());
 
 app.post('/signup', async (req, res) => {
 
@@ -76,12 +73,13 @@ app.post('/login', async (req, res) => {
         if (!isPasswordCorrect) {
             return res.status(400).json({ message: 'Invalid Password' });
         }
+
+        session = req.session;
+        session.email = email;
     
         res.status(200).json({ message: 'Login successful' });
     } catch(e) {
-
         res.status(500).json({ message: 'Error logging in', error: error.message });
-        
     }
 })
 

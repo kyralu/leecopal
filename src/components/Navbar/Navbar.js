@@ -10,11 +10,11 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="links">
-        <Link className="link" to="/group">
+        <Link style={{ textDecoration: "underline" }} className="link" to="/group">
           Groups
         </Link>
-        <Link className="link" to="/signup">
-          Join
+        <Link style={{ textDecoration: "underline" }} className="link" to="/signup">
+          Sing Up / Login
         </Link>
       </div>
     </nav>
