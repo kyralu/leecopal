@@ -8,7 +8,12 @@ const userSchema = new mongoose.Schema ({
     password: {
         type: String,
         required: true
-    }
+    },
+    teams: {
+        type: Array,
+        default: [],
+        required: true
+    },
 })
 
 module.exports = mongoose.model('User', userSchema);
