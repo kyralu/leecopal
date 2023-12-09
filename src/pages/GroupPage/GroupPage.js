@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./GroupPage.css";
+import style from "./GroupPage.module.css";
 import GroupList from "../../components/GroupList/GroupList";
 
 
@@ -35,14 +35,14 @@ function GroupPage() {
   };
 
   return (
-    <div className="container">
-      <div className="controller">
-        <div className="filter-container">
+    <div className={style.container}>
+      <div className={style.controller}>
+        <div className={style.filterContainer}>
           {filters.map((filter) => (
-            <button className={selectedFilter === filter ? "filter filter--active" : "filter"} onClick={() => handleFilterClick(filter)}>{filter}</button>
+            <button className={selectedFilter === filter ? `${style.filter} ${style.filterActive}` : style.filter} onClick={() => handleFilterClick(filter)}>{filter}</button>
           ))}
         </div>
-        <button className="create-group-button">  + New Group</button>
+        <button className={style.createGroupButton}>  + New Group</button>
       </div>
       <GroupList groups={selectedFilter === "My Groups"? myGroups:allGroups}></GroupList>
     </div>

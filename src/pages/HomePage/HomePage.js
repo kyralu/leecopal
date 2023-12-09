@@ -1,21 +1,21 @@
 import React from "react";
-import "./HomePage.css";
+import style from "./HomePage.module.css";
 import WebSitePicImage from "../../assets/images/Website_Pic.png";
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const navigate = useNavigate();
   return (
-    <div className="home-page">
-      <div className="container">
+    <div>
+      <div className={style.container}>
         <p>Let's practice together!</p>
-        <div className="button-container">
-          <button className="button" onClick={() => {navigate('/signup')}}>Sign Up</button>
-          <button className="button" onClick={() => {navigate('/login')}}>Login</button>
+        <div className={style.buttonContainer}>
+          <button className={style.button} onClick={() => {navigate('/signup')}}>Sign Up</button>
+          <button className={style.button} onClick={() => {navigate('/login')}}>Login</button>
         </div>
       </div>
 
-      <img class="background-image" src={WebSitePicImage} alt="Website Pic" />
+      <img class={style.backgroundImage} src={WebSitePicImage} alt="Website Pic" />
     </div>
   );
 }

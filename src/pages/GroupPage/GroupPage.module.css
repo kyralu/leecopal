@@ -13,13 +13,13 @@
   cursor: pointer;
 }
 
-.filter--active {
+.filterActive {
   /* deep purpple background */
   background-color: #854eac;
   color: white;
 }
 
-.create-group-button {
+.createGroupButton {
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px 20px;
@@ -29,7 +29,7 @@
   border-radius: 30px;
 }
 
-.create-group-button:hover {
+.createGroupButton:hover {
   cursor: pointer;
   color: white;
   background-color: #854eac;
@@ -40,7 +40,7 @@
   justify-content: space-between;
 }
 
-.filter-container {
+.filterContainer {
   display: flex;
   justify-content: center;
   align-items: center;
