@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import style from "./GroupPage.module.css";
 import GroupList from "../../components/GroupList/GroupList";
+import CreateGroupForm from "../../components/CreateGroupForm/CreateGroupForm";
 
 
 
@@ -29,9 +30,14 @@ function GroupPage() {
 
   const filters = ["My Groups", "All Groups"];
   const [selectedFilter, setSelectedFilter] = useState("My Groups");
-
   const handleFilterClick = (filter) => {
     setSelectedFilter(filter);
+  };
+
+  const [showCreateGroupForm, setShowCreateGroupForm] = useState(false);
+
+  const handleCreateGroupClick = () => {
+    setShowCreateGroupForm(!showCreateGroupForm);
   };
 
   return (
@@ -42,9 +48,10 @@ function GroupPage() {
             <button className={selectedFilter === filter ? `${style.filter} ${style.filterActive}` : style.filter} onClick={() => handleFilterClick(filter)}>{filter}</button>
           ))}
         </div>
-        <button className={style.createGroupButton}>  + New Group</button>
+        <button className={style.createGroupButton} onClick={handleCreateGroupClick}>  + New Group</button>
       </div>
       <GroupList groups={selectedFilter === "My Groups"? myGroups:allGroups}></GroupList>
+      {showCreateGroupForm && <CreateGroupForm />}
     </div>
   );
 }
