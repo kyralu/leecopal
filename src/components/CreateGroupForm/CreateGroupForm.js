@@ -8,9 +8,10 @@ export default function CreateGroupForm({onClose, onCreateGroup}) {
     setTeamName(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onCreateGroup(teamName);
+    await onCreateGroup(teamName);
+    onClose();
     // Here you can also call an API or perform other actions with the team name
   };
 
