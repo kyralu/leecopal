@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import GroupDataDisplay from '../../components/GroupDataDisplay/GroupDataDisplay';
 import arrowBack from '../../assets/icons/arrow_back.svg';
 import GroupCard from '../../components/GroupCard/GroupCard';
+import InfoCard from '../../components/InfoCard/InfoCard';
 
 function GroupInfoPage(props) {
   let { id } = useParams();
@@ -74,7 +75,16 @@ function GroupInfoPage(props) {
       <Link to="/group" className={style.backLink} ><img src={arrowBack} alt="back arrow" />All Groups</Link>
       <div className={style.content}>
         {group && <GroupCard group={group} hasJoined={hasJoined} onJoinGroup={handleJoinGroup}/>}
-        {group && <GroupDataDisplay group={group} />}
+        {members && 
+          <InfoCard title="Members">
+            {members.map(member => <div key={member._id}>{member.leetcodeId}</div>)}
+          </InfoCard>
+        }
+        {group && 
+          <InfoCard title="AC Records">
+            <GroupDataDisplay group={group} />
+          </InfoCard>
+        }
       </div>
     </div>
   )
