@@ -7,29 +7,12 @@ import CreateGroupForm from "../../components/CreateGroupForm/CreateGroupForm";
 
 function GroupPage(props) {
 
-  const groups = [
-    { id: 12, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-    { id: 1, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-    { id: 3, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-    { id: 5, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-  ];
-
-  const myGroups = [
-    { id: 12, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-    { id: 1, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-    { id: 3, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-  ]
-
-  const allGroups = [
-    { id: 12, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-    { id: 1, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-    { id: 3, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-    { id: 8, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-  ]
+  const myGroups = props.groups.filter(group => group.groupMembers.includes(props.id));
+  const moreGroups = props.groups.filter(group => !group.groupMembers.includes(props.id));
 
 
-  const filters = ["My Groups", "All Groups"];
-  const [selectedFilter, setSelectedFilter] = useState("My Groups");
+  const filters = ["Joined Groups", "More Groups"];
+  const [selectedFilter, setSelectedFilter] = useState(filters[0]);
   const handleFilterClick = (filter) => {
     setSelectedFilter(filter);
   };
@@ -49,12 +32,12 @@ function GroupPage(props) {
       <div className={style.controller}>
         <div className={style.filterContainer}>
           {filters.map((filter) => (
-            <button className={selectedFilter === filter ? `${style.filter} ${style.filterActive}` : style.filter} onClick={() => handleFilterClick(filter)}>{filter}</button>
+            <button key={filter} className={selectedFilter === filter ? `${style.filter} ${style.filterActive}` : style.filter} onClick={() => handleFilterClick(filter)}>{filter}</button>
           ))}
         </div>
         <button className={style.createGroupButton} onClick={handleCreateGroupClick}>  + New Group</button>
       </div>
-      <GroupList groups={selectedFilter === "My Groups"? myGroups:allGroups}></GroupList>
+      <GroupList groups={selectedFilter === filters[0] ? myGroups:moreGroups}></GroupList>
       {showCreateGroupForm && <CreateGroupForm onClose={closeCreateForm} onCreateGroup={props.onCreateGroup}/>}
     </div>
   );

@@ -11,6 +11,7 @@ import GroupDataDisplay from "./components/GroupDataDisplay/GroupDataDisplay";
 function App() {
   const [leetcodeId, setLeetcodeId] = useState("");
   const [id, setId] = useState("");
+  const [groups, setGroups] = useState([]);
 
   const updateIds = (leetcodeId, id) => {
     setLeetcodeId(leetcodeId);
@@ -22,7 +23,6 @@ function App() {
   };
 
   const handleCreateGroup = async (groupName) => {
-    console.log("create group", groupName);
     if (!groupName) {
       alert("Please enter valid group name!");
       return;
@@ -39,6 +39,12 @@ function App() {
         },
         body: JSON.stringify({ userId: id, groupName }),
       });
+      if(response.status === 409) {
+        alert("Group already exists!");
+        return;
+      }
+      // update groups
+      fetchGroups();
     } catch (e) {
       console.log(e);
     }
@@ -53,6 +59,7 @@ function App() {
         },
       });
       const data = await response.json();
+      setGroups(data);
     } catch (e) {
       console.log(e);
     }
@@ -77,7 +84,7 @@ function App() {
             <Route path="/signup" element={<SignUpPage />} />
             <Route
               path="/group"
-              element={<GroupPage onCreateGroup={handleCreateGroup} />}
+              element={<GroupPage groups={groups} id={id} onCreateGroup={handleCreateGroup} />}
             />
             <Route path="/datadisplay" element={<GroupDataDisplay />} />
           </Routes>
