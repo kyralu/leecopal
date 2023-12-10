@@ -10,9 +10,11 @@ import GroupPage from './pages/GroupPage/GroupPage';
 function App() {
   
   const [leetcodeId, setLeetcodeId] = useState("");
+  const [id, setId] = useState("");
 
-  const updateLeetcodeId = (id) => {
-    setLeetcodeId(id);
+  const updateIds = (leetcodeId, id) => {
+    setLeetcodeId(leetcodeId);
+    setId(id);
   }
 
   return (
@@ -22,7 +24,7 @@ function App() {
         <div className="content">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage onLoggedIn={updateLeetcodeId}/>} />
+            <Route path="/login" element={<LoginPage onLoggedIn={updateIds}/>} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/group" element={<GroupPage />} />
           </Routes>

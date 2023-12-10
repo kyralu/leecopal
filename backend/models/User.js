@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const User = require('./User');
 
 const userSchema = new mongoose.Schema ({
     email: {
@@ -14,7 +13,7 @@ const userSchema = new mongoose.Schema ({
         type: String,
         required: true
     },
-    teams: [User]
+    groups: [],
 })
 
 module.exports = mongoose.model('User', userSchema);

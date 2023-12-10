@@ -10,11 +10,7 @@ const teamSchema = new mongoose.Schema ({
         type: String,
         required: true
     },
-    teamMembers: {
-        type: Array,
-        default: [],
-        required: true
-    }
+    teamMembers: [],
 })
 
 module.exports = mongoose.model('Team', teamSchema);

@@ -12,7 +12,6 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-const { Grid } = require('@mui/material');
 const saltRounds = 10;
 
 // random emoji
