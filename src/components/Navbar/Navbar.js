@@ -1,22 +1,46 @@
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+import style from "./Navbar.module.css";
 
-const Navbar = () => {
+const beforeLogggedin = () => {
   return (
-    <nav className="navbar">
-      <div className="site-name">
+    <div className="links">
+      <Link
+        style={{ textDecoration: "underline" }}
+        className="link"
+        to="/signup"
+      >
+        Sing Up
+      </Link>
+      <Link
+        style={{ textDecoration: "underline" }}
+        className="link"
+        to="/signin"
+      >
+        Sign In
+      </Link>
+    </div>
+  );
+};
+
+const afterLogggedin = (props) => {
+  return (
+    <div className={style.links}>
+      <div className={style.welcome}>🤖 <span className={style.userName}>{props.leetcodeId}</span></div>
+      <button className={style.signoutButton}>SIGN OUT</button>
+    </div>
+  );
+}
+
+
+const Navbar = (props) => {
+  return (
+    <nav className={style.navbar}>
+      <div className={style.siteName}>
         <Link to="/" style={{ textDecoration: "none" }}>
           <h1>LeecoPal</h1>
         </Link>
       </div>
-      <div className="links">
-        <Link style={{ textDecoration: "underline" }} className="link" to="/group">
-          Groups
-        </Link>
-        <Link style={{ textDecoration: "underline" }} className="link" to="/signup">
-          Sing Up / Login
-        </Link>
-      </div>
+      {props.leetcodeId ? afterLogggedin(props) : beforeLogggedin()}
     </nav>
   );
 };

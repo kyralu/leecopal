@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const teamSchema = new mongoose.Schema ({
     teamIcon: {
         type: String,
@@ -13,12 +14,7 @@ const teamSchema = new mongoose.Schema ({
         type: Array,
         default: [],
         required: true
-    },
-    leetCodeData: {
-        type: Array,
-        default: [],
-        required: true
-    },
+    }
 })
 
 module.exports = mongoose.model('Team', teamSchema);

@@ -11,7 +11,7 @@ function HomePage() {
         <p>Let's practice together!</p>
         <div className={style.buttonContainer}>
           <button className={style.button} onClick={() => {navigate('/signup')}}>Sign Up</button>
-          <button className={style.button} onClick={() => {navigate('/login')}}>Login</button>
+          <button className={style.button} onClick={() => {navigate('/login')}}>Log In</button>
         </div>
       </div>
 

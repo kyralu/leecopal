@@ -12,7 +12,7 @@
   width: 100%;
 }
 
-.site-name {
+.siteName {
   margin-left: 20px;
 }
 
@@ -32,4 +32,13 @@ h1 {
   color: black;
   text-decoration: none;
   margin-left: 10px;
+}
+
+.welcome {
+  margin-right: 20px;
+}
+
+.signoutButton {
+  padding: 10px;
+  background-color: transparent;
 }

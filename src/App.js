@@ -9,21 +9,20 @@ import GroupPage from './pages/GroupPage/GroupPage';
 
 function App() {
   
-  const [email, setEmail] = useState("");
-  const [id, setId] = useState("");
+  const [leetcodeId, setLeetcodeId] = useState("");
 
-  const updateEmail = (email) => {
-    setEmail(email);
+  const updateLeetcodeId = (id) => {
+    setLeetcodeId(id);
   }
 
   return (
     <Router>
       <div className="App">
-        <Navbar email={email}/>
+        <Navbar leetcodeId={leetcodeId}/>
         <div className="content">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage onLoggedIn={updateEmail}/>} />
+            <Route path="/login" element={<LoginPage onLoggedIn={updateLeetcodeId}/>} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/group" element={<GroupPage />} />
           </Routes>
