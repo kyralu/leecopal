@@ -1,7 +1,7 @@
 import style from "./CreateGroupForm.module.css";
 import React, { useState } from "react";
 
-export default function CreateGroupForm() {
+export default function CreateGroupForm({onClose}) {
   const [teamName, setTeamName] = useState("");
 
   const handleInputChange = (event) => {
@@ -18,7 +18,9 @@ export default function CreateGroupForm() {
     <div className={style.background}>
       <form className={style.form} onSubmit={handleSubmit}>
         <h2>Create New Group 🕺🏻</h2>
-        <label className={style.label} htmlFor="teamName">Group Name</label>
+        <label className={style.label} htmlFor="teamName">
+          Group Name
+        </label>
         <input
           type="text"
           id="teamName"
@@ -26,7 +28,12 @@ export default function CreateGroupForm() {
           onChange={handleInputChange}
           className={style.input}
         />
-        <button type="submit" className={style.submitButton}>Submit</button>
+        <div className={style.buttonContainer}>
+          <button className={style.button} onClick={()=>onClose()}>Cancel</button>
+          <button type="submit" className={`${style.button} ${style.buttonPrimary}`}>
+            Create
+          </button>
+        </div>
       </form>
     </div>
   );

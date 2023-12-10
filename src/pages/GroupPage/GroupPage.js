@@ -40,6 +40,10 @@ function GroupPage() {
     setShowCreateGroupForm(!showCreateGroupForm);
   };
 
+  const closeCreateForm = () => {
+    setShowCreateGroupForm(false);
+  }
+
   return (
     <div className={style.container}>
       <div className={style.controller}>
@@ -51,7 +55,7 @@ function GroupPage() {
         <button className={style.createGroupButton} onClick={handleCreateGroupClick}>  + New Group</button>
       </div>
       <GroupList groups={selectedFilter === "My Groups"? myGroups:allGroups}></GroupList>
-      {showCreateGroupForm && <CreateGroupForm />}
+      {showCreateGroupForm && <CreateGroupForm onClose={closeCreateForm}/>}
     </div>
   );
 }
