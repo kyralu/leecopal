@@ -15,7 +15,7 @@ function HomePage() {
         </div>
       </div>
 
-      <img class={style.backgroundImage} src={WebSitePicImage} alt="Website Pic" />
+      <img className={style.backgroundImage} src={WebSitePicImage} alt="Website Pic" />
     </div>
   );
 }

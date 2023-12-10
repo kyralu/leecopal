@@ -12,7 +12,11 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const { Grid } = require('@mui/material');
 const saltRounds = 10;
+
+// random emoji
+const randomEmoji = require('random-emoji');
 
 require('dotenv').config(); // For environment variables
 
@@ -53,7 +57,7 @@ app.post('/signup', async (req, res) => {
         const newUser = new User({ email, password: hashedPassword});
         await newUser.save();
         
-        res.status(201).json({ message: "User created successfully" });
+        res.status(201).json({ message: "User created successfully"});
     } catch(e) {
         res.status(500).json({ message: "Error creating user", error: e.message });
     }
@@ -82,6 +86,22 @@ app.post('/login', async (req, res) => {
         res.status(200).json({ message: 'Login successful' });
     } catch(e) {
         res.status(500).json({ message: 'Error logging in', error: error.message });
+    }
+})
+
+app.post('/group', async (req, res) => {
+    try {
+        const  {groupName} = req.body;
+        const groupIcon = randomEmoji.random({count: 1})[0].character;
+        // const group = new Group({
+        //     groupName,
+        //     groupIcon: groupIcon,
+        //     groupMembers: [],
+        //     leetCodeData: []
+        // });
+
+    } catch (e) {
+        res.status(500).json({ message: 'Error creating group', error: error.message });
     }
 })
 
