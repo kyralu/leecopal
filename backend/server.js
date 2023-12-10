@@ -44,7 +44,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.post('/signup', async (req, res) => {
 
-    const { email, password } = req.body;
+    const { email, password, leetcodeId } = req.body;
 
     try {
         const existingUser = await User.findOne({email: email});
@@ -54,8 +54,10 @@ app.post('/signup', async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
-        const newUser = new User({ email, password: hashedPassword});
+        const newUser = new User({ email, password: hashedPassword, leetcodeId});
+        console.log('ok 1')
         await newUser.save();
+        console.log('ok 2')
         
         res.status(201).json({ message: "User created successfully"});
     } catch(e) {
@@ -81,11 +83,10 @@ app.post('/login', async (req, res) => {
         // session = req.session;
         // session.email = email;
 
-        // console.log("logged in user", session.email);
     
-        res.status(200).json({ message: 'Login successful' });
+        res.status(200).json({ message: 'Login successful', email: user.email, id: user._id});
     } catch(e) {
-        res.status(500).json({ message: 'Error logging in', error: error.message });
+        res.status(500).json({ message: 'Error logging in', error: e.message });
     }
 })
 
@@ -101,7 +102,7 @@ app.post('/group', async (req, res) => {
         // });
 
     } catch (e) {
-        res.status(500).json({ message: 'Error creating group', error: error.message });
+        res.status(500).json({ message: 'Error creating group', error: e.message });
     }
 })
 

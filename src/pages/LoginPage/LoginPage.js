@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./LoginPage.module.css";
 
-export default function LoginPage() {
+export default function LoginPage({onLoggedIn}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -41,7 +41,6 @@ export default function LoginPage() {
 
       const result = await response.json();
       console.log("Login Successful", result);
-      alert("Login Successful");
       navigate("/group");
     } catch (e) {
       console.error("Error Occurred", e);

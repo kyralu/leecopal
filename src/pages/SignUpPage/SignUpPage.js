@@ -4,6 +4,7 @@ import style from "./SignUpPage.module.css";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
+  const [leetcodeId, setLeetcodeId] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
@@ -28,6 +29,11 @@ export default function SignUpPage() {
       alert("Please enter valid email!");
       return;
     }
+    if(!leetcodeId) {
+      resetForm();
+      alert("Please enter valid LeetCode ID!");
+      return;
+    }
     if (password !== confirmPassword) {
       resetForm();
       alert("Passwords do not match.");
@@ -36,6 +42,7 @@ export default function SignUpPage() {
     const userData = {
       email,
       password,
+      leetcodeId,
     };
     try {
       const response = await fetch("http://localhost:3000/signup", {
@@ -78,6 +85,17 @@ export default function SignUpPage() {
           className={style.input}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+        <label className={style.label} htmlFor="leetcodeId">
+          LeetCode ID
+        </label>
+        <input
+          type="text"
+          id="leetcodeId"
+          placeholder="LeetCode ID"
+          className={style.input}
+          value={leetcodeId}
+          onChange={(e) => setLeetcodeId(e.target.value)}
         />
         <label className={style.label} htmlFor="password">
           Password
