@@ -49,7 +49,7 @@ export default function LoginPage({onLoggedIn}) {
 
   return (
     <div className={style.container}>
-      <form class={style.form} onSubmit={handleSubmit}>
+      <form className={style.form} onSubmit={handleSubmit}>
         <h2>Log in now! 😈</h2>
         <label className={style.label} htmlFor="email">
           Email

@@ -9,19 +9,23 @@ import GroupPage from './pages/GroupPage/GroupPage';
 import GroupDataDisplay from "./components/GroupDataDisplay/GroupDataDisplay";
 import GroupInfoPage from "./pages/GroupInfoPage/GroupInfoPage";
 import QuestionPage from "./pages/group/question/QustionPage";
+import { set } from "lodash";
 
 function App() {
   const [leetcodeId, setLeetcodeId] = useState("");
   const [id, setId] = useState("");
   const [groups, setGroups] = useState([]);
 
-  const updateIds = (leetcodeId, id) => {
+  const handleLoggedIn = (leetcodeId, id) => {
     setLeetcodeId(leetcodeId);
-    setId(id);
-  };
+    setId(id); 
+    localStorage.setItem('userInfo', JSON.stringify({leetcodeId, id}));
+  }
 
   const handleSignOut = () => {
     setLeetcodeId("");
+    setId("");
+    localStorage.removeItem('userInfo');
   };
 
   const handleCreateGroup = async (groupName) => {
@@ -37,7 +41,7 @@ function App() {
       const response = await fetch("http://localhost:3000/group", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json", 
         },
         body: JSON.stringify({ userId: id, groupName }),
       });
@@ -72,6 +76,15 @@ function App() {
     fetchGroups();
   }, [id]);
 
+  useEffect(() => {
+    const userInfo = localStorage.getItem('userInfo');
+    if(userInfo) {
+      const {leetcodeId, id} = JSON.parse(userInfo);
+      setLeetcodeId(leetcodeId);
+      setId(id);
+    }
+  }, []);
+
   return (
     <Router>
       <div className="App">
@@ -81,7 +94,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route
               path="/login"
-              element={<LoginPage onLoggedIn={updateIds} />}
+              element={<LoginPage onLoggedIn={handleLoggedIn} />}
             />
             <Route path="/signup" element={<SignUpPage />} />
             <Route

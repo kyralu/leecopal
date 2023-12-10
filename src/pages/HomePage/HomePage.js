@@ -1,10 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import style from "./HomePage.module.css";
 import WebSitePicImage from "../../assets/images/Website_Pic.png";
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const navigate = useNavigate();
+  useEffect(() => {
+    const userInfo = localStorage.getItem('userInfo');
+    if(userInfo) {
+      navigate('/group');
+    }
+  }, []);
   return (
     <div>
       <div className={style.container}>

@@ -75,6 +75,7 @@ app.post("/login", async (req, res) => {
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
+
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: "Invalid Password" });
     }
@@ -93,8 +94,8 @@ app.post("/login", async (req, res) => {
 });
 
 /**
- * @route GET /user
- * @desc Get user data
+ * @route GET /group
+ * @desc Get group data
  * @access Public
  */
 app.post("/group", async (req, res) => {
