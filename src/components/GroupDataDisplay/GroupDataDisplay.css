@@ -1,0 +1,42 @@
+/* 用户列表的总体样式 */
+.user-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 每个用户项的样式 */
+.user-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    width: 80%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 用户标题样式 */
+.user-item h2 {
+    margin-bottom: 10px;
+}
+
+/* 条形图容器的样式 */
+.chart {
+    width: 100%;
+}
+
+/* 单个条形的样式 */
+.chart-bar {
+    height: 20px;
+    background-color: #4caf50; /* 条形图的颜色 */
+    margin: 5px 0;
+    color: white;
+    display: flex;
+    align-items: center; /* 文本垂直居中 */
+    padding-left: 5px;
+}
+
+/* 可以添加额外的样式来调整条形图的外观 */
+.chart-bar:hover {
+    background-color: #388e3c; /* 鼠标悬停时条形图的颜色变化 */
+}

@@ -6,7 +6,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import HomePage from './pages/HomePage/HomePage';
 import GroupPage from './pages/GroupPage/GroupPage';
-
+import GroupDataDisplay from './components/GroupDataDisplay/GroupDataDisplay';
 function App() {
   
   const [leetcodeId, setLeetcodeId] = useState("");
@@ -27,6 +27,7 @@ function App() {
             <Route path="/login" element={<LoginPage onLoggedIn={updateIds}/>} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/group" element={<GroupPage />} />
+            <Route path="/datadisplay" element={<GroupDataDisplay />} />
           </Routes>
         </div>
       </div>
