@@ -40,7 +40,7 @@ export default function LoginPage({onLoggedIn}) {
       }
 
       const result = await response.json();
-      onLoggedIn(result.leetcodeId);
+      onLoggedIn(result.leetcodeId, result.id);
       navigate("/group");
     } catch (e) {
       console.error("Error Occurred", e);

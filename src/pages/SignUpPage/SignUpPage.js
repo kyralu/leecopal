@@ -73,7 +73,7 @@ export default function SignUpPage() {
 
   return (
     <div className={style.container}>
-      <form class={style.form} onSubmit={handleSubmit}>
+      <form className={style.form} onSubmit={handleSubmit}>
         <h2>Ready to Sign Up? 🤓</h2>
         <label className={style.label} htmlFor="email">
           Email
