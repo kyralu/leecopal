@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const User = require('./models/User');
 const Question = require('./models/Question');
-const cookieParser = require("cookie-parser");
-const sessions = require('express-session');
+// const cookieParser = require("cookie-parser");
+// const sessions = require('express-session');
 
 
 const app = express();
@@ -26,17 +26,17 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
-// express-session
-const oneDay = 1000 * 60 * 60 * 24;
-app.use(sessions({
-    secret: "no-one-will-know-this",
-    saveUninitialized:true,
-    cookie: { maxAge: oneDay },
-    resave: false 
-}));
+// // express-session
+// const oneDay = 1000 * 60 * 60 * 24;
+// app.use(sessions({
+//     secret: "no-one-will-know-this",
+//     saveUninitialized:true,
+//     cookie: { maxAge: oneDay },
+//     resave: false 
+// }));
 
-// cookie-parser
-app.use(cookieParser());
+// // cookie-parser
+// app.use(cookieParser());
 
 app.post('/signup', async (req, res) => {
 
@@ -74,8 +74,10 @@ app.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'Invalid Password' });
         }
 
-        session = req.session;
-        session.email = email;
+        // session = req.session;
+        // session.email = email;
+
+        // console.log("logged in user", session.email);
     
         res.status(200).json({ message: 'Login successful' });
     } catch(e) {

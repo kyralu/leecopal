@@ -11,7 +11,7 @@ function GroupPage() {
     { id: 12, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
     { id: 1, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
     { id: 3, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-    { id: 3, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
+    { id: 5, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
   ];
 
   const myGroups = [
@@ -24,7 +24,7 @@ function GroupPage() {
     { id: 12, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
     { id: 1, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
     { id: 3, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
-    { id: 3, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
+    { id: 8, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
   ]
 
 
