@@ -1,16 +1,17 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-
-const teamSchema = new mongoose.Schema ({
-    teamIcon: {
+const groupSchema = new mongoose.Schema ({
+    _id: { type: Schema.Types.ObjectId },
+    groupIcon: {
         type: String,
         required: true
     },
-    teamName: {
+    groupName: {
         type: String,
         required: true
     },
-    teamMembers: [],
+    groupMembers: [],
 })
 
-module.exports = mongoose.model('Team', teamSchema);
+module.exports = mongoose.model('Group', groupSchema);

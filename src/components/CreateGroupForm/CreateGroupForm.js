@@ -1,7 +1,7 @@
 import style from "./CreateGroupForm.module.css";
 import React, { useState } from "react";
 
-export default function CreateGroupForm({onClose}) {
+export default function CreateGroupForm({onClose, onCreateGroup}) {
   const [teamName, setTeamName] = useState("");
 
   const handleInputChange = (event) => {
@@ -10,7 +10,7 @@ export default function CreateGroupForm({onClose}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`Team Name submitted: ${teamName}`);
+    onCreateGroup(teamName);
     // Here you can also call an API or perform other actions with the team name
   };
 

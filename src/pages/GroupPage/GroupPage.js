@@ -5,7 +5,7 @@ import CreateGroupForm from "../../components/CreateGroupForm/CreateGroupForm";
 
 
 
-function GroupPage() {
+function GroupPage(props) {
 
   const groups = [
     { id: 12, groupName: "NEU LeetCode Study Group", /* Other data properties here */ },
@@ -55,7 +55,7 @@ function GroupPage() {
         <button className={style.createGroupButton} onClick={handleCreateGroupClick}>  + New Group</button>
       </div>
       <GroupList groups={selectedFilter === "My Groups"? myGroups:allGroups}></GroupList>
-      {showCreateGroupForm && <CreateGroupForm onClose={closeCreateForm}/>}
+      {showCreateGroupForm && <CreateGroupForm onClose={closeCreateForm} onCreateGroup={props.onCreateGroup}/>}
     </div>
   );
 }
