@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import style from "./Navbar.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 

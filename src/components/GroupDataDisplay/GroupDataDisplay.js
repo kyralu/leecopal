@@ -1,5 +1,5 @@
 import React from 'react';
-import './GroupDataDisplay.css';
+import style from './GroupDataDisplay.module.css';
 
 // 测试数据
 const mockUsers = [
@@ -28,11 +28,11 @@ const UserListItem = ({ user }) => {
   const maxAcCount = Math.max(...user.acRecords.map(record => record.acCount), 0);
 
   return (
-    <div className="user-item">
+    <div className={style["user-item"]}>
       <h2>LeetCode ID: {user.leetcodeId}</h2>
-      <div className="chart">
+      <div className={style["chart"]}>
         {user.acRecords.map((record, index) => (
-          <div key={index} className="chart-bar" style={{ width: `${(record.acCount / maxAcCount) * 100}%` }}>
+          <div key={index} className={style["chart-bar"]} style={{ width: `${(record.acCount / maxAcCount) * 100}%` }}>
             <span>{record.date}: {record.acCount}</span>
           </div>
         ))}
@@ -44,7 +44,7 @@ const UserListItem = ({ user }) => {
 // 用户列表组件
 const UserList = () => {
   return (
-    <div className="user-list">
+    <div className={style["user-list"]}>
       {mockUsers.map(user => <UserListItem key={user._id} user={user} />)}
     </div>
   );
