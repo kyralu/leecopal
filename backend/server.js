@@ -46,6 +46,7 @@ app.use(cookieParser());
 
 app.post("/signup", async (req, res) => {
   const { email, password, leetcodeId } = req.body;
+  console.log(req.body);
 
   try {
     const existingUser = await User.findOne({ email: email });
@@ -55,7 +56,8 @@ app.post("/signup", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-    const newUser = new User({ email, password: hashedPassword, leetcodeId });
+    const newUser = new User({ email, password: hashedPassword, leetcodeId, groups: [],  acRecords: [] });
+    console.log(newUser);
     await newUser.save();
 
     res.status(201).json({ message: "User created successfully" });

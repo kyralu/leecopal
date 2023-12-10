@@ -9,7 +9,6 @@ import GroupPage from './pages/GroupPage/GroupPage';
 import GroupDataDisplay from "./components/GroupDataDisplay/GroupDataDisplay";
 import GroupInfoPage from "./pages/GroupInfoPage/GroupInfoPage";
 import QuestionPage from "./pages/group/question/QustionPage";
-import { set } from "lodash";
 
 function App() {
   const [leetcodeId, setLeetcodeId] = useState("");
@@ -44,6 +43,34 @@ function App() {
           "Content-Type": "application/json", 
         },
         body: JSON.stringify({ userId: id, groupName }),
+      });
+      if(response.status === 409) {
+        alert("Group already exists!");
+        return;
+      }
+      // update groups
+      fetchGroups();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleJoinGroup = async (groupId) => {
+    if (!groupId) {
+      alert("Please enter valid group id!");
+      return;
+    }
+    if(!id) {
+      alert("Please login first!");
+      return;
+    }
+    try {
+      const response = await fetch("http://localhost:3000/group/join", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify({ userId: id, groupId }),
       });
       if(response.status === 409) {
         alert("Group already exists!");
@@ -99,10 +126,10 @@ function App() {
             <Route path="/signup" element={<SignUpPage />} />
             <Route
               path="/group"
-              element={<GroupPage groups={groups} id={id} onCreateGroup={handleCreateGroup} />}
+              element={<GroupPage groups={groups} id={id} onCreateGroup={handleCreateGroup}/>}
             />
             <Route path="/datadisplay" element={<GroupDataDisplay />} />
-            <Route path="/group/:id" element={<GroupInfoPage />} />
+            <Route path="/group/:id" element={<GroupInfoPage  onJoinGroup={handleJoinGroup} />} />
             <Route path="/group/questions" element={<QuestionPage />} />
           </Routes>
         </div>

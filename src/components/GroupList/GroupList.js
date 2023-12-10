@@ -7,7 +7,7 @@ export default function GroupList(props) {
     <div className="group-list">
         {props.groups.map((group) => (
           <div className="group" key={group._id}>
-            <GroupCard key={group.id} group={group} />
+            <GroupCard key={group.id} group={group} showEnter={true} hasJoined={true}/>
           </div>
         ))}
     </div>

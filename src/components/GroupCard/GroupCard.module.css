@@ -1,24 +1,53 @@
-.group-card {
+.groupCard {
   display: flex;
   align-items: center;
   background-color: #fff;
   border-radius: 10px;
-  padding: 20px;
+  padding: 0 20px 0 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
   border: 1px solid #ddd; /* Added border */
+  overflow: hidden;
 }
 
-.team-icon {
-  font-size: 3rem; /* Adjust size as needed */
+.teamIcon {
+  font-size: 5rem; /* Adjust size as needed */
+  height: 100%;
+  width: auto;
+  padding: 0 40px;
+  border-right: 1px solid #ddd;
+  background-color: #f5f5f5;
 }
 
-.group-name {
+.groupInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-left: 20px;
+}
+
+.groupName {
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: 600;
+  line-height: 2rem;
+}
+
+.groupMembers{
+  display: flex;
+  align-items: center;
   font-size: 1.2rem;
-  color: #333;
   line-height: 1.2rem;
-  margin-left: 10px;
+  color: #525151;
+  margin-left: 5px;
 }
+
+.peopleIcon  {
+  fill: #525151;
+  padding: 0;
+  height: 1.5rem;
+}
+
 
 button {
   padding: 10px 20px;
