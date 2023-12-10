@@ -1,46 +1,7 @@
 import React, { useState } from "react";
-import WebsitePicImage from "../assets/images/Website_Pic.png";
 import { styled } from "@mui/material/styles";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const LogInPage1 = styled("div")({
-  backgroundColor: `rgba(104, 100, 100, 1)`,
-  display: `flex`,
-  position: `relative`,
-  isolation: `isolate`,
-  flexDirection: `row`,
-  width: `100vw`,
-  height: `1024px`,
-  justifyContent: `flex-start`,
-  alignItems: `flex-start`,
-  padding: `0px`,
-  boxSizing: `border-box`,
-  overflow: `hidden`,
-});
-
-const WebsitePic = styled("img")({
-  height: `293px`,
-  width: `518px`,
-  position: `absolute`,
-  left: `195px`,
-  top: `261px`,
-});
-
-const Frame1 = styled("div")({
-  display: `flex`,
-  position: `absolute`,
-  isolation: `isolate`,
-  flexDirection: `row`,
-  justifyContent: `flex-start`,
-  alignItems: `flex-start`,
-  padding: `0px`,
-  boxSizing: `border-box`,
-  width: `525px`,
-  height: `708px`,
-  left: `728px`,
-  top: `192px`,
-  overflow: `hidden`,
-});
 
 const LogInButton = styled("button")({
   // backgroundColor: `rgba(110, 178, 86, 0.2)`,
@@ -113,106 +74,8 @@ const Email = styled("div")({
   top: `63px`,
 });
 
-const NavBar = styled("div")({
-  display: `flex`,
-  position: `absolute`,
-  isolation: `isolate`,
-  flexDirection: `row`,
-  justifyContent: `space-around`,
-  alignItems: `flex-start`,
-  padding: `0px`,
-  boxSizing: `border-box`,
-  width: `100%`,
-  height: `46px`,
-  left: `188px`,
-  top: `50px`,
-});
 
-const LeetcodeStudyGroup = styled("div")({
-  textAlign: `left`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Irish Grover`,
-  fontWeight: `400`,
-  fontSize: `36px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  WebkitTextStroke: `1px rgba(0, 0, 0, 1)`,
-  position: `absolute`,
-  left: `0px`,
-  top: `1px`,
-});
 
-const Home = styled("div")({
-  textAlign: `left`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Istok Web`,
-  fontWeight: `400`,
-  fontSize: `32px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  position: `absolute`,
-  left: `518px`,
-  top: `0px`,
-});
-
-const Group = styled("div")({
-  textAlign: `left`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Istok Web`,
-  fontWeight: `400`,
-  fontSize: `32px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  position: `absolute`,
-  left: `661px`,
-  top: `0px`,
-});
-
-const LogIn1 = styled("div")({
-  textAlign: `left`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Istok Web`,
-  fontWeight: `400`,
-  fontSize: `32px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  position: `absolute`,
-  left: `807px`,
-  top: `0px`,
-});
-
-const SignUp = styled("div")({
-  textAlign: `left`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Istok Web`,
-  fontWeight: `400`,
-  fontSize: `32px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  position: `absolute`,
-  left: `953px`,
-  top: `0px`,
-});
 
 function LogInPage() {
   const [email, setEmail] = useState("");
@@ -256,43 +119,23 @@ function LogInPage() {
   };
 
   return (
-    <LogInPage1>
-      <WebsitePic src={WebsitePicImage} loading="lazy" alt={"Website Pic"} />
-      <Frame1>
-        <form onSubmit={handleSubmit}>
-          <EmailInput
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Email>{`Email:`}</Email>
-          <PasswordInput
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Password>{`Password:`}</Password>
-          <LogInButton type="submit">Log In</LogInButton>
-        </form>
-      </Frame1>
-      <NavBar>
-        <LeetcodeStudyGroup>{`LeecoPal`}</LeetcodeStudyGroup>
-        <Link to="/home">
-          <Home>{`Home`}</Home>
-        </Link>
-        <Link to="/group">
-          <Group>{`Group`}</Group>
-        </Link>
-        <Link to="/login">
-          <LogIn1>{`Log In`}</LogIn1>
-        </Link>
-        <Link to="/signup">
-          <SignUp>{`Sign Up`}</SignUp>
-        </Link>
-      </NavBar>
-    </LogInPage1>
+    <form onSubmit={handleSubmit}>
+      <EmailInput
+        type="text"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <Email>{`Email:`}</Email>
+      <PasswordInput
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <Password>{`Password:`}</Password>
+      <LogInButton type="submit">Log In</LogInButton>
+    </form>
   );
 }
 
