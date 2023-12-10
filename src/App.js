@@ -17,10 +17,14 @@ function App() {
     setId(id);
   }
 
+  const handleSignOut = () => {
+    setLeetcodeId("");
+  }
+
   return (
     <Router>
       <div className="App">
-        <Navbar leetcodeId={leetcodeId}/>
+        <Navbar leetcodeId={leetcodeId} onSignOut={handleSignOut}/>
         <div className="content">
           <Routes>
             <Route path="/" element={<HomePage />} />
