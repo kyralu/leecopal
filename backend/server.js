@@ -95,6 +95,51 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.post("/group/questions", async (req, res) => {
+  const { title, content } = req.body;
+
+  try {
+    const newQuestion = new Question({
+      title,
+      content,
+      answers: [],
+    });
+
+    await newQuestion.save();
+    res.status(201).json({ message: "Question created successfully" });
+  } catch (e) {
+    res.status(500).json({ message: "Error creating question", e });
+  }
+});
+
+app.get("/group/questions", async (req, res) => {
+  try {
+    const questions = await Question.find({});
+    res.json(questions);
+  } catch (e) {
+    res.status(500).json({ message: "Error fetching questions", e });
+  }
+});
+
+app.post("/group/questions/:questionId/answer", async (req, res) => {
+  const { questionId } = req.params;
+  const { answerContent } = req.body;
+
+  try {
+    const question = await Question.findById(questionId);
+    if (!question) {
+      return res.status(404).json({ message: "Question not found" });
+    }
+
+    question.answers.push({ content: answerContent });
+    await question.save();
+
+    res.status(201).json({ message: "Answer added successfully" });
+  } catch (e) {
+    res.status(500).json({ message: "Error saving answer" });
+  }
+});
+
 /**
  * @route GET /group
  * @desc Get group data
@@ -216,51 +261,6 @@ app.post("/users", async (req, res) => {
     res.json(users);
   } catch (e) {
     res.status(500).json({ message: "Error fetching users", error: e.message });
-  }
-});
-
-app.post("/group/questions", async (req, res) => {
-  const { title, content } = req.body;
-
-  try {
-    const newQuestion = new Question({
-      title,
-      content,
-      answers: [],
-    });
-
-    await newQuestion.save();
-    res.status(201).json({ message: "Question created successfully" });
-  } catch (e) {
-    res.status(500).json({ message: "Error creating question", e });
-  }
-});
-
-app.get("/group/questions", async (req, res) => {
-  try {
-    const questions = await Question.find({});
-    res.json(questions);
-  } catch (e) {
-    res.status(500).json({ message: "Error fetching questions", e });
-  }
-});
-
-app.post("/group/questions/:questionId/answer", async (req, res) => {
-  const { questionId } = req.params;
-  const { answerContent } = req.body;
-
-  try {
-    const question = await Question.findById(questionId);
-    if (!question) {
-      return res.status(404).json({ message: "Question not found" });
-    }
-
-    question.answers.push({ content: answerContent });
-    await question.save();
-
-    res.status(201).json({ message: "Answer added successfully" });
-  } catch (e) {
-    res.status(500).json({ message: "Error saving answer" });
   }
 });
 
