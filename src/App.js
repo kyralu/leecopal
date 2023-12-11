@@ -8,7 +8,7 @@ import HomePage from './pages/HomePage/HomePage';
 import GroupPage from './pages/GroupPage/GroupPage';
 import GroupDataDisplay from "./components/GroupDataDisplay/GroupDataDisplay";
 import GroupInfoPage from "./pages/GroupInfoPage/GroupInfoPage";
-import QuestionPage from "./pages/group/question/QustionPage";
+import GroupQuestionPage from "./pages/GroupQuestionPage/GroupQustionPage";
 
 function App() {
   const [leetcodeId, setLeetcodeId] = useState("");
@@ -130,7 +130,7 @@ function App() {
             />
             <Route path="/datadisplay" element={<GroupDataDisplay />} />
             <Route path="/group/:id" element={<GroupInfoPage  onJoinGroup={handleJoinGroup} />} />
-            <Route path="/group/questions" element={<QuestionPage />} />
+            <Route path="/group/questions" element={<GroupQuestionPage />} />
           </Routes>
         </div>
       </div>

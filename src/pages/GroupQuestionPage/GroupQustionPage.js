@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
 const GroupQuestionPage1 = styled("div")({
-  backgroundColor: `rgba(104, 100, 100, 1)`,
+  backgroundColor: `white`,
   display: `flex`,
   position: `relative`,
   isolation: `isolate`,
@@ -29,7 +29,7 @@ const Frame1 = styled("div")({
   width: `525px`,
   height: `708px`,
   left: `728px`,
-  top: `192px`,
+  top: `150px`,
   overflow: `hidden`,
 });
 
@@ -71,7 +71,7 @@ const Question = styled("div")({
   height: `45px`,
   position: `absolute`,
   left: `86px`,
-  top: `188px`,
+  top: `150px`,
 });
 
 const QuestionTitleInput = styled("input")({
@@ -79,7 +79,7 @@ const QuestionTitleInput = styled("input")({
   height: `40px`,
   position: `absolute`,
   left: `85px`,
-  top: `120px`,
+  top: `100px`,
 });
 
 const QuestionTitle = styled("div")({
@@ -98,124 +98,13 @@ const QuestionTitle = styled("div")({
   height: `45px`,
   position: `absolute`,
   left: `85px`,
-  top: `47px`,
-});
-
-const NavBar = styled("div")({
-  display: `flex`,
-  position: `absolute`,
-  isolation: `isolate`,
-  flexDirection: `row`,
-  justifyContent: `space-around`,
-  alignItems: `flex-start`,
-  padding: `0px`,
-  boxSizing: `border-box`,
-  width: `100%`,
-  height: `46px`,
-  left: `188px`,
-  top: `50px`,
-});
-
-const LogOut = styled("div")({
-  textAlign: `left`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Istok Web`,
-  fontWeight: `400`,
-  fontSize: `32px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  width: `120.39px`,
-  height: `45.02px`,
-  position: `absolute`,
-  left: `816px`,
-  top: `0px`,
-});
-
-const User = styled("div")({
-  textAlign: `left`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Istok Web`,
-  fontWeight: `400`,
-  fontSize: `32px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  width: `67.91px`,
-  height: `45.02px`,
-  position: `absolute`,
-  left: `997px`,
-  top: `0px`,
-});
-
-const Group = styled("div")({
-  textAlign: `left`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Istok Web`,
-  fontWeight: `400`,
-  fontSize: `32px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  width: `90.55px`,
-  height: `45.02px`,
-  position: `absolute`,
-  left: `680px`,
-  top: `1px`,
-});
-
-const Home = styled("div")({
-  textAlign: `left`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Istok Web`,
-  fontWeight: `400`,
-  fontSize: `32px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  width: `86.43px`,
-  height: `45.02px`,
-  position: `absolute`,
-  left: `533px`,
-  top: `1px`,
-});
-
-const LeetcodeStudyGroup = styled("div")({
-  textAlign: `left`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Irish Grover`,
-  fontWeight: `400`,
-  fontSize: `36px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  WebkitTextStroke: `1px rgba(0, 0, 0, 1)`,
-  width: `383.81px`,
-  height: `43.06px`,
-  position: `absolute`,
-  left: `0px`,
-  top: `2px`,
+  top: `40px`,
 });
 
 const QuestionsSection = styled("div")({
   position: "absolute",
   left: "100px",
-  top: "150px",
+  top: "50px",
   width: "600px",
   padding: "20px",
   maxHeight: "800px",
@@ -386,6 +275,7 @@ function GroupQuestionPage() {
 
       alert('Questions Posted Successfully');
       resetForm();
+      window.location.reload();
     } catch (e) {
       console.error('Failed to post questions:', e);
       alert('Failed to post questions');
@@ -397,7 +287,7 @@ function GroupQuestionPage() {
       {showModal && (
         <ModalContainer>
           <ModalContent>
-            <ModalInput value={currentAnswer} onChange={handleAnswerChange} />
+            <ModalInput value={currentAnswer} onChange={handleAnswerChange} placeholder="Enter the answer"/>
           </ModalContent>
           <ModalButtons>
             <button onClick={handleAnswerSubmit}>Submit Answer</button>
@@ -405,20 +295,6 @@ function GroupQuestionPage() {
           </ModalButtons>
         </ModalContainer>
       )}
-      <NavBar>
-        <LeetcodeStudyGroup>{`LeetcoPal`}</LeetcodeStudyGroup>
-        <Link to="/home">
-          <Home>{`Home`}</Home>
-        </Link>
-        <Link to="/group">
-          <Group>{`Group`}</Group>
-        </Link>
-        {/* TODO: Display Current UserName */}
-        <User>{`User`}</User>
-        <Link to="/home">
-          <LogOut>{`Log Out`}</LogOut>
-        </Link>
-      </NavBar>
       <Frame1>
         <form onSubmit={handleSubmit}>
           <QuestionTitleInput 
@@ -447,7 +323,6 @@ function GroupQuestionPage() {
             </QuestionTitleRow>
             <p>{question.content}</p>
             <AnswersLabel>Answers:</AnswersLabel>
-            {/* Display answers for this question */}
             <div>
               {question.answers && question.answers.map((answer, answerIndex) => (
                 <AnswerContainer key={answerIndex}>
