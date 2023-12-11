@@ -28,6 +28,7 @@ export default function CreateGroupForm({onClose, onCreateGroup}) {
           value={teamName}
           onChange={handleInputChange}
           className={style.input}
+          placeholder="Enter group name"
         />
         <div className={style.buttonContainer}>
           <button className={style.button} onClick={()=>onClose()}>Cancel</button>
