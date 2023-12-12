@@ -1,0 +1,11 @@
+runtime: nodejs
+env: flex
+entrypoint: npm start
+env_variables:
+  MONGO_URI: "mongodb+srv://kyraytlu:q50NAGjHLB0EY0qP@cluster0.yz3ahw6.mongodb.net/"
+runtime_config:
+  operating_system: ubuntu22
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10

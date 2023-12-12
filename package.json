@@ -3,11 +3,8 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
-        "@mui/material": "^5.14.19",
-        "@mui/styles": "^5.14.19",
         "@testing-library/user-event": "^13.5.0",
         "axios": "^1.6.2",
         "bcrypt": "^5.1.1",
@@ -56,6 +53,7 @@
     },
     "proxy": "http://localhost:3000",
     "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "@babel/preset-env": "^7.23.5",
         "@babel/preset-react": "^7.23.3",
         "@testing-library/jest-dom": "^6.1.5",
