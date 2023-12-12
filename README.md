@@ -33,6 +33,7 @@ Update the README to answer the following questions:
 Validation:
 ![Alt text](<screenshots/Screenshot 2023-12-11 at 10.41.53 PM.png>)
 ![Alt text](<screenshots/Screenshot 2023-12-11 at 10.42.55 PM.png>)
+![Alt text](<screenshots/Screenshot 2023-12-11 at 11.41.57 PM.png>)
     
  2. Add screenshots showing your Atlas database before and after your app runs.
 
