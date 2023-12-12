@@ -21,6 +21,12 @@ Update the README to answer the following questions:
 
  1. Add screenshots showing your app running on Google Cloud. Add a link to your website. Add a screenshot showing the html on your website has been validated. Also one showing proper contrast.
  2. Add screenshots showing your Atlas database before and after your app runs.
- 3. Each person: Describe your experience working with your team to complete this project. What is one key learning that you're taking away from this experience? What is one thing that you would change?
- 4. Explain what parts each team member did. Keep in mind we can see your GitHub commit history.
- 5. Each person: What was the process like working on this full-stack web application. Provide specific examples to help illustrate your experience.
+ 3. Each person: Describe your experience working with your team to complete this project. What is one key learning that you're taking away from this experience? What is one thing that you would change?<br>
+  Kyra Lu: It was a comprehensive and collaborative experience for me. One key learning from this experience is likely the importance of integrating front-end and back-end systems effectively. Handling both the user interface aspects and the back-end logic requires a deep understanding of how these elements interact. Ensuring a seamless user experience while maintaining data security and integrity is a critical skill in software development. <br>If there's something to change or improve upon, it might involve further enhancing the collaborative aspects of the project. There is still some code conflicts even we seperated the work clearly, which may result in some waste of time and repeated work. But overall, I think we did a pretty good job.
+
+ 4. Explain what parts each team member did. Keep in mind we can see your GitHub commit history.<br>
+    Jialin: Team Management and Data Integration<br>
+    Kyra: User Management and Team Interaction<br>
+    Zhuoxi: Data Display
+7. Each person: What was the process like working on this full-stack web application. Provide specific examples to help illustrate your experience.<br>
+   Kyra Lu: Working on the Leecopal full-stack web application was a multifaceted process, starting with project planning and requirements gathering. We identified key features like team Management, data integration and display as well as registration, login, and a question-answer system. The next phase involved designing the website wireframe. Then designing the database schema for different user accounts, groups and question-answers, creating user-friendly interfaces. Afterwards, we all worked on our side of the project. And in the end, we conducted functionality and  code tests to ensure the operation of the whole project. During the entire process, we also did discussion and communication on a regular basis, which ensures the smooth work of the entire team.
